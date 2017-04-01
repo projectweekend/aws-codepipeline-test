@@ -2,7 +2,11 @@ version: 0.1
 phases:
     pre_build:
         commands:
-            - docker build -t projectweekend/aws-codepipeline-test .
+            - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     build:
         commands:
+            - docker build -t projectweekend/aws-codepipeline-test .
             - docker run projectweekend/aws-codepipeline-test pytest
+    post_build:
+        commands:
+            - docker push projectweekend/aws-codepipeline-test
