@@ -1,12 +1,15 @@
 version: 0.1
+environment_variables:
+    plaintext:
+        DOCKER_REPO_NAME: projectweekend/aws-codepipeline-test
 phases:
     pre_build:
         commands:
             - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     build:
         commands:
-            - docker build -t projectweekend/aws-codepipeline-test .
-            - docker run projectweekend/aws-codepipeline-test pytest
+            - docker build -t $DOCKER_REPO_NAME .
+            - docker run $DOCKER_REPO_NAME pytest
     post_build:
         commands:
-            - docker push projectweekend/aws-codepipeline-test
+            - docker push $DOCKER_REPO_NAME
