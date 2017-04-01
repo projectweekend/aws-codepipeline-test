@@ -1,5 +1,8 @@
 version: 0.1
 phases:
+    pre_build:
+        commands:
+            - docker build -t projectweekend/aws-codepipeline-test .
     build:
         commands:
-            - pytest
+            - docker run projectweekend/aws-codepipeline-test pytest
