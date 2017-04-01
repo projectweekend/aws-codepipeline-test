@@ -1,5 +1,10 @@
+
+def say(message):
+    return message
+
+
 def main():
-    print("Howdy!")
+    print(say("Howdy!"))
 
 
 if __name__ == "__main__":
